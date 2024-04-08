@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Task from "./components/Task";
 import Add from "./components/Add";
 function App() {
@@ -6,19 +6,46 @@ function App() {
   const [showAddC, setShowAddC] = useState(false);
   const [tempId, setTempId] = useState(0);
   const [tasks, setTasks] = useState([]);
-  const [d, setD] = useState([]);
-  
+
+  useEffect(() => {
+    let users = JSON.parse(localStorage.getItem("rtodoData")) || [];
+    setTasks(users);
+    users.length > 0 && setTempId(users[users.length - 1]?.id + 1);
+  }, []);
+
   function addTask(e) {
     if (e.target.name === "add") {
       // taskC.push(tempId)
       // setTaskC(taskC);
       //or:
-      let inputContent = e.target.parentElement.previousSibling.value
-      setTasks([...tasks,{id:tempId,content:inputContent}])
+      let inputContent = e.target.parentElement.previousSibling.value;
+      setTasks([...tasks, { id: tempId, content: inputContent }]);
       setTempId(tempId + 1);
     }
     setShowAddC(false);
   }
+
+  function deleteTask(e) {
+    let taskVal = e.target.parentElement.firstElementChild.nextSibling.value;
+    let notDeletedTasks = [];
+    tasks.map((task) => taskVal !== task.content && notDeletedTasks.push(task));
+    if (deleteTask.length > 1) {
+      setTasks(notDeletedTasks);
+    } else {
+      setTasks(notDeletedTasks);
+      localStorage.removeItem("rtodoData");
+    }
+  }
+
+  function completeTask() {
+    // let taskVal = e.target.parentElement.firstElementChild.nextSibling.value;
+    console.log("yes i am running......");
+  }
+
+  useEffect(() => {
+    tasks.length > 0 &&
+      localStorage.setItem("rtodoData", JSON.stringify(tasks));
+  }, [tasks]); // AS setTasks useState is asynchronous so this ensures that when task updated then add to loacl storage
 
   return (
     <div
@@ -35,7 +62,7 @@ function App() {
         <div className="gap-2 sm:gap-4 font-semibold flex flex-col sm:flex-row flex-wrap items-center">
           <div className="relative">
             <img
-              src="../public/images/searchIcon.svg"
+              src="images/searchIcon.svg"
               alt=""
               className={`absolute left-2 top-2 filter brightness-0 ${
                 themeBlack ? "invert" : ""
@@ -55,16 +82,12 @@ function App() {
               id=""
               className="py-1 text-lg px-2 bg-cyan-600 outline-none rounded text-white border-2 border-cyan-600 cursor-pointer"
             >
-              <option value="">All</option>
-              <option value="">Completed</option>
-              <option value="">Incompleted</option>
+              <option value="All">All</option>
+              <option value="Complete">Complete</option>
+              <option value="Incomplete">Incomplete</option>
             </select>
             <img
-              src={
-                themeBlack
-                  ? "../public/images/lightMode.svg"
-                  : "../public/images/darkMode.svg"
-              }
+              src={themeBlack ? "images/lightMode.svg" : "images/darkMode.svg"}
               alt="switch mode btn"
               className="py-1 text-lg px-2 bg-cyan-600 outline-none rounded border-2 border-cyan-600 cursor-pointer"
               onClick={() =>
@@ -80,14 +103,28 @@ function App() {
         } space-x-2 gap-4`}
       >
         <img
-          src="../public/images/Vector-4.svg"
+          src="images/Vector-4.svg"
           alt="Add Task button"
           className="bg-cyan-600 p-4 rounded-full fixed bottom-12 xl:left-2/3 left-3/4 cursor-pointer hover:scale-110"
           onClick={() => setShowAddC(true)}
         />
-        {tasks.map((task) => <Task key={task.id} id={task.id} content={task.content} themeBlack={themeBlack} />)}
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            id={task.id}
+            content={task.content}
+            themeBlack={themeBlack}
+            deleteTask={deleteTask}
+          />
+        ))}
       </div>
-      {showAddC && <Add themeBlack={themeBlack} addTask={addTask} />}
+      {showAddC && (
+        <Add
+          themeBlack={themeBlack}
+          addTask={addTask}
+          completeTask={completeTask}
+        />
+      )}
     </div>
   );
 }

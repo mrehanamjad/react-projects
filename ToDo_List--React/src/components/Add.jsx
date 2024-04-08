@@ -1,10 +1,10 @@
 import React from "react";
 
-function Add({ themeBlack,addTask }) {
+function Add({ themeBlack, addTask }) {
   return (
     <div className=" h-full w-full bg-black/30 absolute top-0">
       <div
-        className={`h-72 w-[37rem] px-2 py-6 rounded-xl bg-red-300 border-2 flex flex-col items-center  gap-4 absolute top-[40%] left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 ${
+        className={`h-72 w-[37rem] px-2 py-6 rounded-xl  border-2 flex flex-col items-center  gap-4 absolute top-[40%] left-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 ${
           themeBlack ? "text-white bg-[#252525]" : "text-black bg-[#f5f5f5]"
         }`}
       >
