@@ -25,15 +25,10 @@ function App() {
 
   return (
     <div
-            className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat "
-            style={{
-                backgroundImage: `url('https://images.pexels.com/photos/14751274/pexels-photo-14751274.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
-                backgroundPosition:"center",
-                background: "cover"
-            }}
+            className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat bg-green-300 "
         >
-            <div className="w-full">
-                <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
+            <div className="w-full ">
+                <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-black/30">
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
