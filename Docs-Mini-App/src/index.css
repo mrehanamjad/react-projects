@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection{
+    color: hsl(25, 59%, 55%);
+}
