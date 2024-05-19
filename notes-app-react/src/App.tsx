@@ -16,11 +16,13 @@ function App() {
   const addNote = (note: NotesT) => {
     setNotes((prev) => [note, ...prev]);
   };
+  
   const updateNote = (id: number, note: NotesT) => {
     setNotes((prev) =>
       prev.map((prevNote) => (prevNote.id === id ? note : prevNote))
     );
   };
+
   const deleteNote = (id: number) => {
     setNotes((prev: NotesT[]) => prev.filter((note: NotesT) => note.id != id));
   };
@@ -47,9 +49,11 @@ function App() {
       <Header />
       <Top />
       <AddNote />
+      <div className="h-full w-full  grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 p-5 sm:p-10 lg:px-16">
       {notes.map((note) => (
         <NoteItem key={note.id} noteData={note} />
       ))}
+      </div>
     </NotesProvider>
   );
 }
