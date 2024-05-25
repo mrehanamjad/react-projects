@@ -63,7 +63,7 @@ function App() {
         {notes.map(
           (note) =>
             note.label.includes(currentLabel) && 
-              note.title.includes(toBeSeached) && (
+              note.title.toLowerCase().includes(toBeSeached.toLowerCase()) && (
               <NoteItem key={note.id} noteData={note} />
             )
         )}
