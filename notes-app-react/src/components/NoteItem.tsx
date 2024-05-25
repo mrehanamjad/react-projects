@@ -1,31 +1,42 @@
-import React, { useState, useEffect } from "react";
-import {
-  FaPenSquare,
-  FaChevronCircleLeft,
-  FaImage,
-  IoMdColorPalette,
-  FaSave,
-  MdDelete,
-} from "../icons";
+import React, { useState} from "react";
+import { FaPenSquare, MdDelete } from "../icons";
 import { useNotesContext } from "../contexts";
-import BgColor from "./BgColor";
+import {BgColor,Label} from "./index";
 
-const NoteItem: React.FC = ({ noteData }) => {
+interface NotesT {
+  id: number;
+  title: string;
+  content: string;
+  bgColor: string;
+  label: string[];
+}
+
+interface NoteItemProp {
+  noteData: NotesT;
+}
+
+const NoteItem: React.FC<NoteItemProp> = ({ noteData }) => {
   const [expend, setExpend] = useState<boolean>(false);
   const [title, setTitle] = useState(noteData.title);
   const [content, setContent] = useState(noteData.content);
 
-  const { updateNote,deleteNote } = useNotesContext();
+  const { updateNote, deleteNote } = useNotesContext();
+  const [label, setLabel] = useState<string>(noteData.label[1]);
 
   const update = (e) => {
     e.preventDefault();
-    updateNote(noteData.id, { ...noteData, title, content });
+    updateNote(noteData.id, {
+      ...noteData,
+      title,
+      content,
+      label: ["All", label],
+    });
     setExpend(false);
   };
 
   const del = () => {
-    deleteNote(noteData.id)
-  }
+    deleteNote(noteData.id);
+  };
 
   return (
     <div
@@ -50,7 +61,9 @@ const NoteItem: React.FC = ({ noteData }) => {
           expend
             ? " m-0 z-30  min-h-[62%] min-w-[90%] md:min-w-[75%] xl:min-w-[55%] sm:rounded-lg"
             : "hover:border-4 h-48"
-        }  p-4 dark:text-white rounded-lg flex flex-col gap-1 cursor-pointer bg-cover transition-all ease-linear ${noteData.bgColor}`}
+        }  p-4 dark:text-white rounded-lg flex flex-col gap-1 cursor-pointer bg-cover transition-all ease-linear ${
+          noteData.bgColor
+        }`}
       >
         <form
           action=""
@@ -58,8 +71,7 @@ const NoteItem: React.FC = ({ noteData }) => {
           onSubmit={update}
         >
           {expend && (
-            <div className="w-full h-full mb-2 flex justify-between text-3xl text-white font-bold">
-            </div>
+            <div className="w-full h-full mb-2 flex justify-between text-3xl text-white font-bold"></div>
           )}
           <input
             type="text"
@@ -91,16 +103,17 @@ const NoteItem: React.FC = ({ noteData }) => {
             )}
             {expend && (
               <div className="w-full flex justify-between">
-                <BgColor  note={noteData}/>
-                {/* <ul className="p-2 gap-2 flex justify-around text-2xl rounded-md ">
-                  <li title="Background image">
-                    <FaImage />
+                <ul className="p-2 flex justify-around dark:text-white rounded-md relative">
+                  <li>
+                    <BgColor note={noteData} />
                   </li>
-                  <li title="Background color">
-                    <IoMdColorPalette />
+                  <li>
+                    <Label setLabel={setLabel} label={label} />
                   </li>
-                </ul> */}
-                <button title="Delete note" onClick={del} ><MdDelete className="P-2 text-2xl dark:text-white hover:text-red-600" /></button>
+                </ul>
+                <button title="Delete note" onClick={del}>
+                  <MdDelete className="P-2 text-2xl dark:text-white hover:text-red-600" />
+                </button>
               </div>
             )}
           </div>

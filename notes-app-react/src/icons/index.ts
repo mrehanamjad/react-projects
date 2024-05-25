@@ -9,6 +9,7 @@ import { CiSearch } from "react-icons/ci";
 import { MdLabel } from "react-icons/md";
 import { CiCircleChevDown } from "react-icons/ci";
 import { IoIosAddCircle, } from "react-icons/io";
+import { TbSunMoon } from "react-icons/tb";
 
 
 export {
@@ -23,4 +24,5 @@ export {
   MdLabel,
   CiCircleChevDown,
   IoIosAddCircle,
+  TbSunMoon,
 };

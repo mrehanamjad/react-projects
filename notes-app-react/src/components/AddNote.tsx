@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { useNotesContext } from "../contexts";
-import {
-  IoIosAddCircle,
-  FaChevronCircleLeft,
-  FaImage,
-  IoMdColorPalette,
-  MdLabel,
-  MdDelete,
-  CiCircleChevDown,
-} from "../icons";
+import { IoIosAddCircle } from "../icons";
 import BgColor from "./BgColor";
+import Label from "./Label";
 
 const AddNote: React.FC = () => {
   const [letsAdd, setLetsAdd] = useState<boolean>(false);
@@ -18,10 +11,11 @@ const AddNote: React.FC = () => {
   const [bgColor, setBgColor] = useState<string>(
     "bg-[#f8f9fa]  dark:bg-[#1e293b]"
   );
+  const [label, setLabel] = useState<string>("");
 
   const { addNote } = useNotesContext();
 
-  const add = (e) => {
+  const add = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!title) return;
@@ -31,7 +25,7 @@ const AddNote: React.FC = () => {
       title,
       content,
       bgColor,
-      bgImage: "./images/image.png",
+      label: ["All", label],
     });
     setTitle("");
     setContent("");
@@ -73,23 +67,15 @@ const AddNote: React.FC = () => {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               ></textarea>
-              <div className="w-full flex justify-between">
-                <BgColor setBg={setBgColor} />
-                {/* <ul className="p-2 gap-2 flex justify-around text-2xl rounded-md relative">
+              <div className="w-full flex justify-between items-center flex-col sm:flex-row">
+                <ul className="p-2 flex justify-around  dark:text-white rounded-md relative">
                   <li>
-                    <FaImage onClick={ChangeBgColor} />
-                    <div className="absolute  min-w-96 rounded-2xl bg-white/25 flex gap-1 items-center justify-evenly flex-wrap p-1 ">
-                      {allColorsLight.map((colorLight) => (
-                        <div
-                          className={`h-7 w-7  ${colorLight} ${allColorsDark[1]} rounded-full cursor-pointer`}
-                        >{``}</div>
-                      ))}
-                    </div>
+                    <BgColor setBg={setBgColor} />
                   </li>
                   <li>
-                    <IoMdColorPalette />
+                    <Label setLabel={setLabel} label={label} />
                   </li>
-                </ul> */}
+                </ul>
                 <div>
                   <button
                     onClick={() => {

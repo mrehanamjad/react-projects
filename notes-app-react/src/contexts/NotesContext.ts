@@ -5,7 +5,7 @@ interface NotesT {
   title: string;
   content: string;
   bgColor: string;
-  bgImage: string;
+  label: string[];
 }
 
 interface NotesContextT {
@@ -13,6 +13,7 @@ interface NotesContextT {
   addNote: (note: NotesT) => void;
   updateNote: (id: number, note: NotesT) => void;
   deleteNote: (id: number) => void;
+  setLabelFilterFunc: (label:string) => void;
 }
 
 export const NotesContext = createContext<NotesContextT>({
@@ -22,13 +23,14 @@ export const NotesContext = createContext<NotesContextT>({
       title: "This",
       content: "this is content gi",
       bgColor: "bg-blue-400",
-      bgImage: "./images/image.png",
+      label: ["All","lab1"],
     },
   ],
   addNote: (note) => {},
   updateNote: (id, note) => {},
   deleteNote: (id) => {},
-});
+  setLabelFilterFunc: (label) => {},
+});   
 
 export const useNotesContext = (): NotesContextT => {
   return useContext(NotesContext);
