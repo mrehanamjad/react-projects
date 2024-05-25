@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { CiSearch, MdLabel, CiCircleChevDown } from "../icons";
 import {LabelNav} from "./index";
 
-const Top: React.FC = () => {
+interface TopProp{
+  setToBeSeached: (value:string) => void;
+}
+
+const Top: React.FC<TopProp> = ({setToBeSeached}) => {
   const [showLabelNav, setShowLabelNav] = useState(false);
 
   return (
@@ -16,6 +20,7 @@ const Top: React.FC = () => {
           type="search"
           className="outline-none rounded-md py-2 px-4 pl-8 w-full   dark:bg-transparent"
           placeholder="Search Note..."
+          onChange={(e) => setToBeSeached(e.currentTarget.value)}
         />
       </form>
       <div className="relative">

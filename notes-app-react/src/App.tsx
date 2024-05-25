@@ -13,6 +13,7 @@ interface NotesT {
 function App() {
   const [notes, setNotes] = useState<NotesT[]>([]);
   const [currentLabel, setCurrentLabel] = useState<string>("All");
+  const [toBeSeached, setToBeSeached] = useState("")
 
   const addNote = (note: NotesT) => {
     setNotes((prev) => [note, ...prev]);
@@ -51,7 +52,7 @@ function App() {
       value={{ notes, addNote, updateNote, deleteNote, setLabelFilterFunc }}
     >
       <Header />
-      <Top />
+      <Top setToBeSeached={setToBeSeached} />
       <AddNote />
       {notes.length < 1 && (
         <h1 className="text-center font-bold text-3xl mt-10 text-black/20 dark:text-white/20">
@@ -61,7 +62,8 @@ function App() {
       <div className="h-full w-full  grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 p-5 sm:p-10 lg:px-16">
         {notes.map(
           (note) =>
-            note.label.includes(currentLabel) && (
+            note.label.includes(currentLabel) && 
+              note.title.includes(toBeSeached) && (
               <NoteItem key={note.id} noteData={note} />
             )
         )}
