@@ -6,7 +6,8 @@ import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
   client = new Client();
-    // if want to use other services rathar than appwrite if future ==> change the constructor
+  account;
+    // if want to use other services rathar than appwrite in future ==> change the constructor
   constructor() {
     this.client
         .setEndpoint(conf.appwriteUrl)
