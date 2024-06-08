@@ -1,4 +1,5 @@
-// watch video form biggening 2 min
+// in this we do both in same file but remember:
+// the best practice industry standard is to keep storage service in seperate file so that it become reuseable 
 
 // many similaries asauth.js
 
@@ -98,7 +99,7 @@ export class Services {
         }
     }
 
-    
+
     // upload file sevice  (homeWork: do this in separate file)
 
     async uploadFile(file){ // pass complete file as parameter not file name
