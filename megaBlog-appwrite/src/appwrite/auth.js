@@ -2,9 +2,10 @@ import conf from "../conf/conf";
 import { Client, Account, ID } from "appwrite";
 
 // better code practice
-// we not axactly copy past according to documentation because we make it industrial standard with best practices so that we can use services(or our own backend) other than appwrite in future if we want
+// we do not axactly copy past according to documentation but we made it industrial standard with best practices so that we can use services(or our own backend) other than appwrite in future if we want
 
 export class AuthService {
+  // these reducers i.e login, logout etc  are promises, most of the methods in appwrite are promises.
   client = new Client();
   account;
     // if want to use other services rathar than appwrite in future ==> change the constructor
