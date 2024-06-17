@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+// NavLink has feature of apply styling --- in this project,if link is active then its color changes to orage
 
 export default function Header() {
   return (
