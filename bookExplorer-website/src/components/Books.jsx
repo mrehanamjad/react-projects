@@ -2,7 +2,7 @@ import React from 'react';
 import {  useSelector } from 'react-redux';
 import Card from './Card';
 import Categories from './Categories';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Books() {
 
@@ -10,6 +10,7 @@ function Books() {
     data: state.data?.data,
     isLoading: state.isLoading,
   }));
+  
   const { cat } = useParams();
 
 
@@ -46,7 +47,6 @@ function Books() {
 
             if(cat === 'biography') return  finds(Title,['uber','elon']) ||  finds(categories,["biography",'Photography','"Electrical engineers"'])
 
-
           });
     }
 
@@ -77,7 +77,9 @@ function Books() {
       <Categories />
       {booksToDisplay && booksToDisplay.length > 0 ? (
         booksToDisplay.map((d) => (
+          <Link to={`/bookdetail/${d.id}`}>
           <Card key={d.id} img={d.volumeInfo.imageLinks?.thumbnail}  title={d.volumeInfo.title} />
+          </Link>
         ))
       ) : (
         <h1 className='text-xl'>No books found</h1>

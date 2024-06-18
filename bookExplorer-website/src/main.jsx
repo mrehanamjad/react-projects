@@ -11,6 +11,12 @@ import Contact from './components/Contact.jsx'
 import Layout from './Layout.jsx'
 import Books from './components/Books.jsx'
 import Search from './components/Search.jsx'
+import BookDetail from './components/BookDetail/BookDetail.jsx'
+import BookDetailLayout from './components/BookDetail/BookDetailLayout.jsx'
+import Overview from './components/BookDetail/Overview.jsx'
+import GetBook from './components/BookDetail/GetBook.jsx'
+import SmilarBooks from './components/BookDetail/SmilarBooks.jsx'
+
 
 const router = createBrowserRouter([{
   path: '/',
@@ -34,6 +40,23 @@ const router = createBrowserRouter([{
     },{
       path: 'search',
       element: <Search />
+    },{
+      path: 'bookdetail/:bookid',
+      element: <BookDetailLayout />,
+      children: [
+        {
+          path: 'overview',
+          element: <Overview />
+        },
+        {
+          path: 'getbook',
+          element:<GetBook />
+        },
+        {
+          path: 'similarbooks',
+          element: <SmilarBooks />
+        }
+      ]
     }
   ]
 }])

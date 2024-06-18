@@ -21,7 +21,7 @@ function HeroSec() {
   useEffect(() => {
       setTimeout(() => {
         i < bgImgLinks.length ? setI(i + 1) : setI(0);
-      }, 15000)
+      }, 9000)
   }, [i])
 
 
