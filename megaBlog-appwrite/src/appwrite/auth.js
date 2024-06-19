@@ -7,7 +7,7 @@ import { Client, Account, ID } from "appwrite";
 export class AuthService {
   // these reducers i.e login, logout etc  are promises, most of the methods in appwrite are promises.
   client = new Client();
-  account;
+  account; //variable
     // if want to use other services rathar than appwrite in future ==> change the constructor
   constructor() {
     this.client

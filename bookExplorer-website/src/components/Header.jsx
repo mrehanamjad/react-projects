@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoSearchOutline } from "react-icons/io5";
+import Logo from "./Logo";
 // NavLink has feature of apply styling --- in this project,if link is active then its color changes to orage
 
 export default function Header() {
@@ -8,13 +9,7 @@ export default function Header() {
     <header className="shadow sticky z-50 top-0">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <Link to="/" className="flex items-center font-bold text-2xl text-green-600">
-            <img
-              src="https://cdn.pixabay.com/photo/2013/07/13/11/35/book-158441_1280.png"
-              className="mr-3 h-12"
-              alt="Logo"
-            /> Book<i className="text-gray-500">Explorer</i>
-          </Link>
+          <Logo />
           <div className="flex items-center lg:order-2">
             <Link
               to={"/search"}

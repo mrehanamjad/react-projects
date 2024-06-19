@@ -24,3 +24,19 @@ const Input = forwardRef(function Input({
 })
 
 export default Input
+
+
+// Another Way:
+/*
+
+function Input({
+    //.props as above
+},ref) {
+
+    //As above ...
+    
+})
+
+export default forwardRef(Input)
+
+*/

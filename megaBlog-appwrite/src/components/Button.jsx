@@ -1,7 +1,7 @@
 import React, { Children } from 'react'
 
 function Button({
-    Children,
+    Children, // this is the button text - as it is a veriable so use can also change it to btnText etc
     type = "button",
     bgColor = "bg-blue-600",
     textColor = "text-white",

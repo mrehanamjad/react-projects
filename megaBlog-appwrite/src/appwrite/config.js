@@ -8,8 +8,8 @@ import { Client, ID, Databases, Storage, Query, Account } from "appwrite";
 
 export class Services {
     client = new Client()
-    databases;
-    bucket; // in docs they say it storage. its a veriable so you can give name as you wish
+    databases; // variable
+    bucket; // in dorcs they say it stoage. its a veriable so you can give name as you wish
 
     constructor() {
         this.client
@@ -84,6 +84,7 @@ export class Services {
         // here in above parameter: queries are jus variable the main thing is [Query.equal("status","active")]
         // in [Query.equal("status","active")], status is keythat me created in appwrite website -> databases -> blog -> Articles -> indexes
         // we can also add more in quesries -> read docs
+        // using enums is more better.
 
         try {
             return await this.databases.listDocuments(
@@ -108,7 +109,7 @@ export class Services {
                 conf.appwriteBucketId,
                 ID.unique(),
                 file
-            ) // here return will be file_id
+            ) // here return will be fileId which we pass in getFilePreview, deleteFile etc methods
             
         } catch (error) {
             console.log("Appwrite :: uploadFile:: error",error);
@@ -129,7 +130,7 @@ export class Services {
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(fileId){ // returns image url
         try {
             return this.bucket.getFilePreview(
                 conf.appwriteBucketId,
