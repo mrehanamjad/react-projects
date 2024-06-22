@@ -11,12 +11,12 @@ function Header() {
     {
       name: 'Home',
       slug: '/',
-      status: true
+      active: true
     },
     {
       name: 'Login',
       slug: '/login',
-      status: !authStatus
+      active: !authStatus
     },
     {
       name: 'Signup',

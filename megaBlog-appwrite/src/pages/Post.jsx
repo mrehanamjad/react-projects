@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import appwriteService from "../appwrite/config"
 import { Button, Container } from '../components'
 import parse from 'html-react-parser'
 import { useSelector } from "react-redux"
 
 export default function Post() {
-    const [post, setPost] = useEffect(null)
+    const [post, setPost] = useState(null)
     const { slug } = useParams()
     const navigate = useNavigate()
 
@@ -17,10 +17,12 @@ export default function Post() {
     useEffect(() => {
       if (slug) {
         appwriteService.getPost(slug).then((post) => {
-            if (post) setPost(post)
-            navigate('/')
+            console.log("post",post)
+            console.log("userData: ",userData)
+            if (post) setPost(post);
+            else navigate('/');
         })
-      }
+      } else navigate("/");
     }, [slug, navigate])
     
     const deletePost = () => {

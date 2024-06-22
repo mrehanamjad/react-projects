@@ -14,13 +14,15 @@ function Login() {
     const [error, setError] = useState("")
     const { register, handleSubmit } = useForm()
 
-    const Login = async (data) => {
+    const login = async (data) => {
         setError("")
         try {
+            console.log('data:',data)
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(storeLogin(data))
+                console.log('userData : ',userData)
+                if (userData) dispatch(storeLogin(userData))
                 navigate('/')
             }
         } catch (error) {
@@ -49,20 +51,20 @@ function Login() {
                     </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
- // see above line carefully
+                {/* see above line carefully */}
                 <form onSubmit={handleSubmit(login)} className='mt-8'>
                     <div className='space-y-5'>
                         <Input
                             label="Email: "
-                            placeholder="Enter your email" 
+                            placeholder="Enter your email"
                             type="email"
                             // react-hook-form :
                             {...register("email", { // ...(spread operator) must use
                                 required: true,
                                 validate: { // pattern
-                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || 
+                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                         "Email address must be a valid address",
-                                        // the above is regex pattern (regular expression) : use chatGpt or go to https://regexr.com and get from community paterns
+                                    // the above is regex pattern (regular expression) : use chatGpt or go to https://regexr.com and get from community paterns
                                 }
                             })}
                         />
@@ -72,13 +74,10 @@ function Login() {
                             placeholder="Enter your password"
                             {...register("password", {
                                 required: true,
-                                //if you want to validate then do
+                                // if you want to validate then do
                             })}
                         />
-                        <Button
-                            type="submit"
-                            className="w-full"
-                        >Sign in</Button>
+                        <Button type="submit" className="w-full" >Sign in</Button>
                     </div>
                 </form>
             </div>

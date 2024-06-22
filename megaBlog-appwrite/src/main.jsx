@@ -37,7 +37,8 @@ const router = createBrowserRouter([
       {
         path: '/all-posts',
         element: (
-          <AuthLayout authentication > //we give true as default value to authentication
+          <AuthLayout authentication > 
+          {/* we has given true as default value to authentication */}
             {" "}
             <AllPosts />
           </AuthLayout>

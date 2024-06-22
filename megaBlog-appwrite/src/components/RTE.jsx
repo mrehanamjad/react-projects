@@ -41,12 +41,13 @@ export default function RTE({
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
-        initialValue={defaultValue}
-        init={{
-            initialValue: defaultValue,
-            height: 500,
-            menubar: true,
-            plugins: [
+            apiKey='q3ttr2ixhw5gedodkn6ohizbfmvhkc9rjvv3m73nbtn58nx2'
+            initialValue={defaultValue}
+            init={{
+              initialValue: defaultValue,
+              height: 500,
+              menubar: true,
+              plugins: [
                 "image",
                 "advlist",
                 "autolink",
@@ -67,13 +68,13 @@ export default function RTE({
                 "help",
                 "wordcount",
                 "anchor",
-            ],
-            toolbar:"undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-            content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
-            // see more doc
-        }}
-        onEditorChange={onChange}
-        />
+              ],
+              toolbar: "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+              content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
+              // see more doc
+            }}
+            onEditorChange={onChange}
+          />
         )}
       />
 

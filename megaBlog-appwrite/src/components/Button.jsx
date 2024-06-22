@@ -1,7 +1,7 @@
 import React, { Children } from 'react'
 
 function Button({
-    Children, // this is the button text - as it is a veriable so use can also change it to btnText etc
+    children, // this is the button text - as it is a veriable so use can also change it to btnText etc
     type = "button",
     bgColor = "bg-blue-600",
     textColor = "text-white",
@@ -10,7 +10,7 @@ function Button({
 }) {
     return (
         <button className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className}`} {...props}>
-            {Children}
+            {children}
         </button>
     )
 }

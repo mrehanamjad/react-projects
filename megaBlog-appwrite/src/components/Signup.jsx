@@ -16,7 +16,7 @@ function Signup() {
     const create = (data) => {
         setError("")
         try {
-            const userData = authService.CreateAcount(data)
+            const userData = authService.createAcount(data)
             if (userData) {
                 const userData = authService.getCurrentUser()
                 if (userData) dispatch(storeLogin(data))
@@ -76,7 +76,7 @@ function Signup() {
                                 required: true,
                             })}
                         />
-                        <Button Children={'Create Account'} type="submit" className="w-full" />
+                        <Button type="submit" className="w-full" >Create Account</Button>
                     </div>
                 </form>
             </div>

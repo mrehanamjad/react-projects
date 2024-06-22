@@ -75,7 +75,7 @@ export class Services {
     //one post
     async getPost(slug) {
         try {
-            await this.databases.getDocument(conf.appwriteDatabaseId, conf.appwriteCollectionId, slug)
+           return await this.databases.getDocument(conf.appwriteDatabaseId, conf.appwriteCollectionId, slug) // slug as document_id
         } catch (error) {
             console.log("Appwrite :: getPost :: error", error);
             return false
