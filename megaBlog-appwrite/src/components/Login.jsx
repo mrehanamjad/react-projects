@@ -6,8 +6,6 @@ import authService from '../appwrite/auth'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 
-
-
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -17,11 +15,11 @@ function Login() {
     const login = async (data) => {
         setError("")
         try {
-            console.log('data:',data)
+            console.log('data:', data)
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                console.log('userData : ',userData)
+                console.log('userData : ', userData)
                 if (userData) dispatch(storeLogin(userData))
                 navigate('/')
             }

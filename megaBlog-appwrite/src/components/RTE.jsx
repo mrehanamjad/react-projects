@@ -33,7 +33,6 @@ export default function RTE({
     // but we do dot directly use <Editor /> beacuse we are making as component and we have to use it in other components and pass reference
     // so:
 
-
     <div className='w-full'>
       {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
       <Controller
@@ -77,7 +76,7 @@ export default function RTE({
           />
         )}
       />
-
+      
     </div>
   )
 }
